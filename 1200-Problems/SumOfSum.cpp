@@ -14,18 +14,13 @@ int main(int argc, char const *argv[]){
             {
                 digitsSum = (aux % 10) + digitsSum;
                 aux = aux / 10;
-
-            } while (aux / 10 != 0);
+            } while (aux / 10 != 0 || aux % 10 != 0);
             if (digitsSum == 0) digitsSum = 1;
             sum = sum + digitsSum;
             digitsSum = 0;
-            cout << "The sum with " << j << "with the previus positions is equal to: " << sum << endl;
         }
         cout << sum << endl;
         sum = 0;
     }
-    
-
-
-
+    return 0;
 }
