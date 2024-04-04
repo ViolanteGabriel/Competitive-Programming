@@ -1,47 +1,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int biggest_number_in_array(vector<int> array)
+void solve()
 {
-    int max = numeric_limits<int>::min(), maxIndice;
-    for (int i = 1; i < array.size() - 1; i++)
+    int arraySize, arrayElement;
+    vector<int> array;
+
+    cin >> arraySize;
+
+    for (int i = 0; i < arraySize; i++)
     {
-        if (array[i] > max) 
-        {
-            max = array[i];
-            maxIndice = i;
-        }
+        cin >> arrayElement;
+        array.push_back(arrayElement);
     }
-    return maxIndice;
-} 
+    
+    for (int i = 1; i < arraySize - 1; i++)
+    {
+        if (array[i] < 0 || (array[i] - 2 <= 0 && array[i - 1] - 1 != 0))
+        {
+            cout << "NO" << endl;
+            break;
+        }
+        while (array[i - 1] > 0)
+        {
+            array[i] -= 2;
+            array[i - 1] -= 1;
+            array[i + 1] -= 1;
+        }
+        if (i == arraySize - 2) cout << "YES" << endl;
+    }
+}
 
 int main(int argc, char const *argv[])
 {
-    int nTests, arraySize, arrayElement, biggestElementIndice = 1;
-    vector<int> array;
+    int nTests;
     cin >> nTests;
-    for (int i = 0; i < nTests; i++)
-    {
-        cin >> arraySize;
-        for (int j = 0; j < arraySize; j++)
-        {
-            cin >> arrayElement;
-            array.push_back(arrayElement);
-        }
-        do
-        {
-            biggestElementIndice = biggest_number_in_array(array);
-            if (array[biggestElementIndice - 1] != 0 && array[biggestElementIndice + 1] != 0)
-            {
-
-            }
-            else
-            {
-                cout << "NO" << endl
-            }
-        } while (array[biggestElementIndice] != 0)
-        
-    }
-    
+    for (int i = 0; i < nTests; i++) solve();    
     return 0;
 }
+
