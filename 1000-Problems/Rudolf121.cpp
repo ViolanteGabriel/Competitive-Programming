@@ -13,13 +13,12 @@ void solve()
         cin >> arrayElement;
         array.push_back(arrayElement);
     }
-    
     for (int i = 1; i < arraySize - 1; i++)
     {
-        if (array[i] < 0 || (array[i] - 2 <= 0 && array[i - 1] - 1 != 0))
+        if (array[i] < 0 || array[i - 1] < 0 || array[i + 1] < 0)
         {
             cout << "NO" << endl;
-            break;
+            return;
         }
         while (array[i - 1] > 0)
         {
@@ -27,8 +26,21 @@ void solve()
             array[i - 1] -= 1;
             array[i + 1] -= 1;
         }
-        if (i == arraySize - 2) cout << "YES" << endl;
+        if ((array[i] < 0 || array[i - 1] < 0 || array[i + 1] < 0))
+        {
+            cout << "NO" << endl;
+            return;
+        }
+        if (i == arraySize - 2)
+        {
+            if (array[i] != 0 || array[i - 1] != 0 || array [i + 1] != 0)
+            {
+                cout << "NO" << endl;
+                return;
+            }
+        }
     }
+    cout << "YES" << endl;
 }
 
 int main(int argc, char const *argv[])
