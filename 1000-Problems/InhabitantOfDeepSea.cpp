@@ -1,10 +1,9 @@
 #include <bits/stdc++.h>
-#define endl '\n'
 using namespace std;
 
 void solution()
 {
-    int nShips, krakenAttacks, HPaux, sinkedShips, krakenAttacksHalf01, krakenAttacksHalf02;
+    long long nShips, krakenAttacks, HPaux, sinkedShips, krakenAttacksHalf01, krakenAttacksHalf02, lastShipSinkedIndex;
     vector<int> shipsHP;
     cin >> nShips >> krakenAttacks;
     for (int i = 0; i < nShips; i++)
@@ -19,25 +18,35 @@ void solution()
 
     for (int i = 0; krakenAttacksHalf01 > 0 and i < nShips; i++)
     {
-        krakenAttacksHalf01 = krakenAttacksHalf01 - shipsHP[i];
-        if (krakenAttacksHalf01 >= 0)
+        if (krakenAttacksHalf01 - shipsHP[i] >= 0) // Significa que o kraken consegue afundar
         {
-            shipsHP[i] = 0;
+            krakenAttacksHalf01 = krakenAttacksHalf01 - shipsHP[i]; // Descontou o numero de ataques do kraken
             sinkedShips++;
-        } 
-        else if (krakenAttacksHalf01 < 0) shipsHP[i] -= (krakenAttacksHalf01  + shipsHP[i]);
+            shipsHP[i] = 0;
+            if (krakenAttacksHalf01 == 0) lastShipSinkedIndex = i;
+        }
+        else if (krakenAttacksHalf01 - shipsHP[i] < 0)  // Se ele nao consegue afundar
+        {
+            shipsHP[i] = shipsHP[i] - krakenAttacksHalf01;
+            lastShipSinkedIndex = i;
+            krakenAttacksHalf01 = 0;
+        }
     }
 
-    for (int i = (nShips - 1); krakenAttacksHalf02 > 0; i--)
+    for (int i = nShips-1; krakenAttacksHalf02 > 0 and i >= lastShipSinkedIndex; i--)
     {
-        if (shipsHP[i] == 0 || krakenAttacksHalf02 == 0) break;
-        krakenAttacksHalf02 = krakenAttacksHalf02 - shipsHP[i];
-        if (krakenAttacksHalf02 >= 0)
+        if (shipsHP[i] == 0) break; // Se o navio ja esta afundado siginifica que todos ja foram afundados
+        if (krakenAttacksHalf02 - shipsHP[i] >= 0) // Significa que o Kraken consegue afundar
         {
-            shipsHP[i] = 0;
+            krakenAttacksHalf02 = krakenAttacksHalf02 - shipsHP[i];     // Descontar o numero de ataques do kraken
             sinkedShips++;
+            shipsHP[i] = 0;
         }
-        else if (krakenAttacksHalf02 < 0) shipsHP[i] -= krakenAttacksHalf02 + shipsHP[i];
+        else if (krakenAttacksHalf02 - shipsHP[i] < 0)  // Se ele nao consegue afundar
+        {
+            shipsHP[i] = shipsHP[i] - krakenAttacksHalf02;
+            krakenAttacksHalf02 = 0;
+        }
     }
     cout << sinkedShips << endl;
     return;
