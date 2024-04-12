@@ -3,37 +3,52 @@
 #define ll long long
 using namespace std;
 
-int vector_product(vector<int> array, int m)
-{
-    int product = 1;
-    for (int i = 0; i < array.size(); i++)  
-    {
-        product = product * array[i];
-        product = product % m;
-    }
-    return product;
-}
-
 void solution()
 {
-    int arrayLength, m, aux;
-    vector<int> arrayA;
+    int remaindersLength, m, aux, product = 1, lastElemmentIndexRight, lastElementIndexLeft, lastElemmentIndex;
+    vector<int> remainders;
+    vector<int> answer;
     string commands;
-    cin >> arrayLength >> m;
-    for (int i = 0; i < arrayLength; i++)
+    cin >> remaindersLength >> m;
+    for (int i = 0; i < remaindersLength; i++)
     {
         cin >> aux;
-        arrayA.push_back(aux);
+        remainders.push_back(aux);
     }
+    lastElementIndexLeft = 0, lastElemmentIndexRight = remaindersLength - 1;
     cin >> commands;
-    for (int i = 0; i < arrayLength; i++)
+    if (remaindersLength != 1)
     {
-        cout << (vector_product(arrayA, m)) << " ";
-        if (commands[i] == 'L') arrayA.erase(arrayA.begin());
-        else if (commands[i] == 'R') arrayA.pop_back();
+        for (int i = 0; i < remaindersLength; i++)                  
+        {
+            
+            if (commands[i] == 'L') lastElementIndexLeft++;
+            else if (commands[i] == 'R') lastElemmentIndexRight--;
+            if (lastElementIndexLeft == lastElemmentIndexRight) 
+            {
+                lastElemmentIndex = lastElementIndexLeft;               //Pegando o index do ultimo elemento
+                break;
+            }
+        }
+        product = product * remainders[lastElemmentIndex] % m;
+        for (int i = remaindersLength - 1; i >= 0; i--)
+        {
+            if (commands[i] == 'L' && i != remaindersLength - 1)
+            {
+                lastElementIndexLeft -= 1;
+                product = product * remainders[lastElementIndexLeft] % m;
+            }
+            else if (commands[i] == 'R' && i != remaindersLength - 1)
+            {
+                lastElemmentIndexRight += 1;
+                product = product * remainders[lastElemmentIndexRight] % m;
+            }
+            answer.insert(answer.begin(), product);
+        }
+        for (int i = 0; i < remaindersLength; i ++) cout << answer[i] << " ";
     }
+    else cout << remainders[0] % m;
     cout << endl;
-
 }
 
 int main()
