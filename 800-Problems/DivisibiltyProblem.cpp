@@ -9,7 +9,12 @@
 using namespace std;
 
 void solve(){
-    
+    int a, b, m = 0; cin >> a >> b;
+    if (a % b == 0)
+        m = 0;
+    else
+        m = b - a%b;
+    cout << m << endl;
 }
 
 int32_t main(){

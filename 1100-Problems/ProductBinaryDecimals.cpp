@@ -9,7 +9,12 @@
 using namespace std;
 
 void solve(){
-    
+    int n; cin >> n;
+    vector<int> binaryNumbers(32);
+    forn(i, 200000){
+        
+    }
+
 }
 
 int32_t main(){
