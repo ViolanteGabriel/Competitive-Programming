@@ -8,8 +8,36 @@
 
 using namespace std;
 
+std::pair<char, int> mostFrequentLetter(const std::string& str) {
+    std::unordered_map<char, int> frequency;
+
+
+    for (char ch : str) {
+        if (isalpha(ch)) { 
+            frequency[ch]++;
+        }
+    }
+
+    char mostFrequent = '\0';
+    int maxFrequency = 0;
+    for (const auto& pair : frequency) {
+        if (pair.second > maxFrequency) {
+            maxFrequency = pair.second;
+            mostFrequent = pair.first;
+        }
+    }
+
+    return std::make_pair(mostFrequent, maxFrequency);
+}
+
 void solve(){
-    
+    int n; cin >> n;
+    string s; cin >> s;
+    auto ans = mostFrequentLetter(s);
+    if (ans.second > n/2)
+        cout << ans.second - (n - ans.second) << endl;
+    else
+        cout << n % 2 << endl;
 }
 
 int32_t main(){
