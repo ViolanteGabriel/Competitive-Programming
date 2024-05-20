@@ -9,7 +9,15 @@
 using namespace std;
 
 void solve(){
-    
+    int x, y; cin >> x >> y;
+    int ans, aux;
+    ans = y / 2 + y % 2;
+    aux = (ans * 15) - (4 * y);
+    while (aux - x < 0){
+        aux += 15;
+        ans++;
+    }
+    cout << ans << endl;
 }
 
 int32_t main(){
