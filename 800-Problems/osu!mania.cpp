@@ -9,13 +9,21 @@
 using namespace std;
 
 void solve(){
-    int n; cin >> n;
-    vector<int> a(n);
+    int n;
+    vector<int> ans;
+    string l;
+    cin >> n;
+    forn(i, n){
+        cin >> l;
+        forn(j, 4){
+            if (l[j] == '#'){
+                ans.insert(ans.begin(), j + 1);
+            }
+        }
+    }
 
     forn(i, n)
-        cin >> a[i];
-
-    
+        cout << ans[i] << " ";
 }
 
 int32_t main(){

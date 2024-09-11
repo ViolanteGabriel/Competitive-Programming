@@ -9,13 +9,17 @@
 using namespace std;
 
 void solve(){
-    int n; cin >> n;
+    int n, aux;  cin >> n;
+    double sum = 0;
     vector<int> a(n);
-
-    forn(i, n)
+    forn(i, n){
         cin >> a[i];
-
-    
+        sum += a[i];
+    }
+    if (static_cast<int>(sqrt(sum)) * sqrt(sum) == static_cast<int>(sum))
+        cout << "yes" << endl;
+    else
+        cout << "no" << endl;
 }
 
 int32_t main(){

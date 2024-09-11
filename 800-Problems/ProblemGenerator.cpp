@@ -9,13 +9,20 @@
 using namespace std;
 
 void solve(){
-    int n; cin >> n;
-    vector<int> a(n);
+    int n, m, ans = 0, aux = 0;
+    cin >> n >> m;
+    string s;
+    cin >> s;
 
-    forn(i, n)
-        cin >> a[i];
-
-    
+    for (int i = 0; i < 7; i++){
+        for (int j = 0; j < n; j++){
+            if (s[j] == (65 + i) and aux < m)
+                aux++;
+        }
+        ans = ans + (m - aux);
+        aux = 0;
+    }
+    cout << ans << endl;
 }
 
 int32_t main(){

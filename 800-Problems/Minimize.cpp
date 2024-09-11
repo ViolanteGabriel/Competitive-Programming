@@ -9,13 +9,9 @@
 using namespace std;
 
 void solve(){
-    int n; cin >> n;
-    vector<int> a(n);
-
-    forn(i, n)
-        cin >> a[i];
-
-    
+    int a, b;
+    cin >> a >> b;
+    cout << b - a << endl;
 }
 
 int32_t main(){

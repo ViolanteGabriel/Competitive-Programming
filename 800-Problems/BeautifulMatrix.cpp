@@ -9,19 +9,22 @@
 using namespace std;
 
 void solve(){
-    int n; cin >> n;
-    vector<int> a(n);
-
-    forn(i, n)
-        cin >> a[i];
-
+    int pi, pj, ans, aux;
+    forn(i, 5){
+        forn(j, 5){
+            cin >> aux;
+            if(aux == 1){
+                pi = i;
+                pj = j;
+            }
+    }
+    }
+    ans = abs(pi - 2) + abs(pj - 2);
+    cout << ans << endl;
     
 }
 
 int32_t main(){
-    int t;
-    cin >> t;
-    while(t--)
-        solve();
+    solve();
     return 0;
 }
