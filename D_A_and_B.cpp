@@ -12,6 +12,13 @@ void solve(){
     int n;
     cin >> n;
 
+    vector<char> strin(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> strin[i];
+    }
+    
+    
     
 }
 
