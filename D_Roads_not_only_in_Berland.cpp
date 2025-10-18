@@ -42,6 +42,8 @@ void solve(){
         pilha.push(i);
         visitados.insert(i);
 
+        pai[i] = -1;
+
         unordered_set<int> comp_conexa;
         while(!pilha.empty()) {
 
@@ -60,14 +62,15 @@ void solve(){
                     pai[vizinho] = current_vertex;
                 }
                     
-                else if (vizinho != pai[current_vertex]) { // Se o vizinho for diferente do pai
-                    string s1 = to_string(current_vertex);
-                    string s2 = to_string(vizinho);
+                else if (vizinho != pai[current_vertex]) {
+                    int a = min(current_vertex, vizinho);
+                    int b = max(current_vertex, vizinho);
+                    string key = to_string(a) + " X " + to_string(b);
 
-                    if (ciclos_incluidos.count(s1 + " X " + s2) == 0) {
-                        // cout << "ciclo inserido" << endl;
+                    if (ciclos_incluidos.count(key) == 0) {
+
                         ciclos.pb({current_vertex, vizinho});
-                        ciclos_incluidos.insert(s1 + " X " + s2);
+                        ciclos_incluidos.insert(key);
                     }
                 }
             }
