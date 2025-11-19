@@ -8,6 +8,24 @@
 
 using namespace std;
 
+// Retorna um set com os divisores de um numero;
+unordered_set<int> divisores(int number) {
+    unordered_set<int> divisores;
+    if (number == 0) {
+        divisores.insert(0);
+        return divisores;
+    } 
+
+    for (int i = 1; i*i <= number; i++)
+    {
+        if (number % i == 0) {
+            divisores.insert(i);
+            divisores.insert(number/i);
+        }
+    }
+    return divisores;
+}
+
 void solve(){
     
 }
@@ -20,3 +38,7 @@ int32_t main(){
     solve();
     return 0;
 }
+
+
+
+
