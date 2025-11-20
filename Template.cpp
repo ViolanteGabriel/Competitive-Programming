@@ -8,6 +8,17 @@
 
 using namespace std;
 
+// Verifica se um numero eh primo:
+bool ehPrimo(int numero) {
+    if (numero <= 1) return false;
+
+    for (int i = 1; i*i <= numero; i++)
+    {
+        if (numero % i == 0 and (i != 1 and i != numero)) return false;
+    }
+    return true;
+}
+
 // Retorna um set com os divisores de um numero;
 unordered_set<int> divisores(int number) {
     unordered_set<int> divisores;
@@ -38,7 +49,6 @@ int32_t main(){
     solve();
     return 0;
 }
-
 
 
 

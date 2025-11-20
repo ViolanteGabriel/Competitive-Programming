@@ -38,23 +38,19 @@ unordered_set<int> divisores(int number) {
 }
 
 void solve(){
-    int x, k; 
-    cin >> x >> k;
+    int n; cin >> n;
 
-    if (k == 1) {
-        if (ehPrimo(x)) {
-            cout << "YES" << endl;
-            return;
-        }
-        else {
-            cout << "NO" << endl;
-            return;
-        }
+    unordered_set<int> divisoress = divisores(n);
+
+    if (n % 2 !=0) {
+        cout << 0 << endl;
+        return;
     }
-    else if (k == 2 and x == 1)
-        cout << "YES" << endl;
-    else
-        cout << "NO" << endl;
+    else {
+        int ans = (n / 4) + 1;
+        cout << ans << endl;
+    }
+
 }
 
 int32_t main(){
