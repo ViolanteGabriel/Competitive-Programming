@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-#define forn(i, n) for(int i = 0; i < int(n); i++)
+#define forn(i, n) for(int i = 0; i < (n); i++)
 #define for_each(i, container) for(auto i : container)
 #define int long long
 #define endl '\n'
