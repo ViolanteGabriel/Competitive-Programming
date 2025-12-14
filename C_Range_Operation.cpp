@@ -1,0 +1,80 @@
+/*
+    Author: Gabriel Violante
+    CF Handle: Kordirior
+    Federal University of Minas Gerais
+*/
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Definitions and Macros
+#define int long long 
+#define pb push_back
+#define all(x) (x).begin(), (x).end()
+#define sz(x) (int)(x).size()
+#define forn(i, n) for (int i = 0; i < n; i++)
+#define endl '\n'
+
+// Useful Constants
+const int INF = 1e18;
+const int MOD = 1e9 + 7;
+
+// Fast I/O
+void fast_io() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+}
+
+// Debugging
+void dbg_out() { cerr << endl; }
+template<typename Head, typename... Tail> void dbg_out(Head H, Tail... T) { cerr << ' ' << H; dbg_out(T...); }
+#ifdef LOCAL
+#define dbg(...) cerr << "(" << #__VA_ARGS__ << "):", dbg_out(__VA_ARGS__)
+#else
+#define dbg(...)
+#endif
+
+// Problem Solution
+void solve() {
+    int n, soma_atual = 0;
+    cin >> n;
+    vector<int> a(n), dp(n);
+    forn(i, n)
+        {cin >> a[i]; soma_atual+=a[i]; dp[i] = soma_atual;}
+
+    // Montamos a equacao de mudanca:
+    /*
+        (l + r)(r - l + 1) - (Sr - Sl-1) =
+        -l2 + l + r2 + r - Sr + Sl-1 =
+        r2 - l2 + l + r - Sr + Sl-1 =
+
+       Mudanca = (r2 + r - Sr) - (l2 - l - Sl-1) 
+
+       Para obter a resposta, para todo valor de r possivel, vemos se mudanca + sum_atual > sum_atual, se for atualiza.
+    */
+    int ans = soma_atual;
+    int menor_fl = 0;
+    forn(i, n) {
+        int fr = (i + 1)*(i + 1) + (i + 1) - dp[i]; 
+        ans = max(ans, soma_atual + fr - menor_fl);
+        menor_fl = min(menor_fl, fr);
+    }
+    cout << ans << endl;
+}
+
+
+
+// Main
+int32_t main() {
+    fast_io();
+    
+    int t = 1;
+    cin >> t;
+    
+    while (t--) {
+        solve();
+    }
+    
+    return 0;
+}
