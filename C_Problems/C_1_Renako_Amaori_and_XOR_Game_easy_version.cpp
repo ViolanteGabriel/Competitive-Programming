@@ -40,7 +40,80 @@ void solve() {
     int n;
     cin >> n;
     
+    vector<int> a(n);
+    vector<int> b(n);
+    forn(i, n) 
+        cin >> a[i];
+    forn(i, n)
+        cin >> b[i];
 
+    // Ajisai -> IMPAR
+    // Mai ->    PAR
+
+    // O score máximo que pode ser obtido é 1, quando alguem tiver um número ímpar de 1's.
+    // Note que a jogada ótima, configura trocar quando o nosso numero de impares é par.
+
+    int score_a  = 0, score_b = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (a[i] == 1) score_a++;
+        if (b[i] == 1) score_b++;
+    }
+
+ 
+    for (int i = 0; i < n; i++)
+    {
+        if (i % 2 == 0) {
+            // Turno do Mai
+            if (score_a % 2 == 0) {
+                if (a[i] != b[i]) {
+                    if (a[i] == 0) {
+                        score_a++;
+                        score_b--;
+                    }
+                    else {
+                        score_a--;
+                        score_b++;
+                    }
+                }
+                int aux = a[i];
+                b[i] = a[i];
+                a[i] = aux;
+            }
+        }
+        else {
+            // Turno do Ajisai
+            if (score_b % 2 == 0) {
+
+                if (a[i] != b[i]) {
+                    if (a[i] == 0) {
+                        score_a++;
+                        score_b--;
+                    }
+                    else {
+                        score_a--;
+                        score_b++;
+                    }
+                }
+                int aux = a[i];
+                b[i] = a[i];
+                a[i] = aux;    
+            }
+        }
+    }
+
+    // cout << "Score A (Ajisai): " << score_a << endl;
+    // cout << "Score B (Mai): " << score_b << endl;
+    score_a = score_a % 2;
+    score_b = score_b % 2;
+    if (score_a > score_b)
+        cout << "Ajisai" << endl;
+    else if (score_a < score_b)
+        cout << "Mai" << endl;
+    else
+        cout << "Tie" << endl;
+
+    return;
 }
 
 // Main
