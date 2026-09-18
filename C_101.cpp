@@ -1,7 +1,7 @@
 /*
     Author: Gabriel Violante
-    CF Handle: Kordirior
-    Federal University of Minas Gerais
+    CF Handle: SUPER_ZOIAO
+    Federal University of Minas Gerais (UFMG)
 */
 
 #include <bits/stdc++.h>
@@ -37,18 +37,43 @@ template<typename Head, typename... Tail> void dbg_out(Head H, Tail... T) { cerr
 
 // Problem Solution
 void solve() {
-    int k, x;
-    cin >> k >> x;
+    int n;
+    cin >> n;
 
-    cout << k * x + 1 << endl;    
+    vector<int> a(n);
+    forn(i, n)
+        cin >> a[i];
+    
+    
 
+    bool firstOneFound = false;
+    for (int i = n-1; i >= 0; i--)
+    {
+        if (a[i] == 1 or a[i] == -1) {
+            a[i] = 1;
+            break;
+        }
+    }
+    
+    for (int i = 0; i < n; i++) {
+        if (a[i] == 1 or (a[i] == -1 and firstOneFound == false)) {
+            firstOneFound = true;
+            a[i] = 1;
+            continue;
+        }
+        a[i] = 0;
+    }
+    
+    forn(i, n) 
+        cout << a[i] << " ";
+    cout << endl;
 }
 
 // Main
 int32_t main() {
     fast_io();
     
-    int t = 1;
+    int t;
     cin >> t;
     
     while (t--) {
