@@ -9,8 +9,9 @@
 using namespace std;
 
 // Definitions and Macros
-#define int long long 
-#define pb push_back
+// #define int long long 
+
+#define printv(v) { for(auto& _xL : (v)) cout << _xL; } // Change the " " to eliminate/add spaces
 #define all(x) (x).begin(), (x).end()
 #define sz(x) (int)(x).size()
 #define forn(i, n) for (int i = 0; i < n; i++)
@@ -37,7 +38,7 @@ template<typename Head, typename... Tail> void dbg_out(Head H, Tail... T) { cerr
 
 // Problem Solution
 void solve() {
-    
+
 }
 
 // Main
@@ -49,6 +50,7 @@ int32_t main() {
     
     while (t--) {
         solve();
+        cout << endl;
     }
     
     return 0;
