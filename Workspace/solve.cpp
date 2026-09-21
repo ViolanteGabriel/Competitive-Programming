@@ -37,7 +37,25 @@ template<typename Head, typename... Tail> void dbg_out(Head H, Tail... T) { cerr
 
 // Problem Solution
 void solve() {
+    int fields, fieldsPerFarm;
+    string s;
+    cin >> fields >> fieldsPerFarm >> s;
+
+    int farms = fields/fieldsPerFarm;
+
+    // Actually On time complexity:
+    for (int i = 0; i < fields; i += fieldsPerFarm)
+    {
+        for (int j = i; j < i + fieldsPerFarm; j++)
+        {
+            if (position[0])
+        }
+        
+    }
     
+
+    
+
 }
 
 // Main

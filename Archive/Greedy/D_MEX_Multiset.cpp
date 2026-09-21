@@ -40,10 +40,51 @@ void solve() {
     int n;
     cin >> n;
 
+    int Nzeros = 0;
+
     vector<int> a(n);
-    forn(i, n)
+    forn(i, n) {
         cin >> a[i];
+        if (a[i] == 0) Nzeros++;
+    }
+    // MEX(A) + MEX(B) + MEX(C) >= 2*(max(MEX(A), MEX(B), MEX(C)))
     
+    // If the number of zeros is equal to 0, than YES, because 0 + 0 + 0 = 2*0
+    // If the number of zeros is equal to 1, than NO, because 0 + 0 + Z != 2*Z
+    // If the Nzeros >= 2 than YES (why?);
+
+    // OK
+    if (Nzeros == 1) {
+        cout << "NO" << endl;
+        return;
+    }
+
+    char c = 'A';
+    char A = 'A';
+    char B = 'B';
+    char C = 'C';
+
+    cout << "YES" << endl;
+
+    // OK
+    if (Nzeros == 0) {
+        forn(i, n)
+            cout << A;
+        cout << endl;
+        return;
+    }
+
+    
+    forn(i, n) {
+        if (a[i] == 0) {
+            if (c == 'C') c = 'A';
+            cout << c;
+            c++;
+            continue;
+        }
+        cout << C;
+    }
+    cout << endl;
     
 }
 
