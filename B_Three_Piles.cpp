@@ -38,14 +38,38 @@ template<typename Head, typename... Tail> void dbg_out(Head H, Tail... T) { cerr
 
 // Problem Solution
 void solve() {
-    int n;
-    cin >> n;
-    
-    vector<int> a(n);
-    forn(i,n) 
-        cin >> a[i];
+    int a, b, c;
+    cin >> a >> b >> c;
 
-    
+    int score = abs(a - b);
+
+        int melhoria = a + c;
+        if (abs(melhoria - b) > abs(a - b)) {
+            a += c;
+            c = 0;
+            score = abs(a-b);
+            cout << score;
+            return;
+        }
+
+        melhoria = b + 1;
+        if (abs(a - melhoria) < abs(a - b)) {
+            int aumento = min(a-b, c);
+            b += aumento;
+            c -= aumento;
+            score = abs(a-b);
+        }
+
+        melhoria = a + c;
+        if (c != 0 and abs(melhoria - b) > abs(a - b)) {
+            a += c;
+            c = 0;
+            score = abs(a-b);
+            cout << score;
+            return;
+        }
+
+        cout << score;
 }
 
 // Main

@@ -41,11 +41,15 @@ void solve() {
     int n;
     cin >> n;
     
-    vector<int> a(n);
-    forn(i,n) 
+    vector<int> a(3);
+    forn(i,3) 
         cin >> a[i];
 
-    
+    int smaller = 10;
+    forn(i, 3) {
+        if (smaller > a[i]) smaller = a[i];
+    }
+    cout << n - smaller;
 }
 
 // Main
