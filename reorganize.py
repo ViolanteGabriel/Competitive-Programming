@@ -80,10 +80,10 @@ for root, dirs, files in os.walk(BASE_DIR):
         continue
     
     for file in files:
-        if not file.endswith(".cpp"):
+        if not (file.endswith(".cpp") or file.endswith(".py")):
             continue
             
-        if file == "template.cpp":
+        if file in ["template.cpp", "template.py", "reorganize.py"]:
             continue
             
         filepath = os.path.join(root, file)
