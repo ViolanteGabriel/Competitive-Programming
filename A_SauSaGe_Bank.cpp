@@ -38,10 +38,11 @@ template<typename Head, typename... Tail> void dbg_out(Head H, Tail... T) { cerr
 
 // Problem Solution
 void solve() {
-    int n;
-    cin >> n;
-    
-    
+    int n, k;
+    cin >> n >> k;
+
+    int money = pow(2, n-k+1) + 2*(k-1);
+    cout << money << endl;
 }
 
 // Main
@@ -53,7 +54,6 @@ int32_t main() {
     
     while (t--) {
         solve();
-        cout << endl;
     }
     
     return 0;
