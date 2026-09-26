@@ -23,10 +23,40 @@ def solve():
     # Write your solution here
     
 
+class Solution:
+    def findDifference(self, nums1: list[int], nums2: list[int]) -> list[list[int]]:
+        set1 = set()
+        set2 = set()
+
+        for i in nums1:
+            set1.add(i)
+        for i in nums2:
+            set2.add(i)
+
+        answer0 = []
+        answer1 = []
+        answer0set = set()
+        answer1set = set()
+
+        for i in nums1:
+            if (i not in set2) and (i not in answer0set):
+                answer0.append(i)
+                answer0set.add(i)
+
+        for i in nums2:
+            if (i not in set1) and (i not in answer1set):
+                answer1.append(i)
+                answer1set.add(i)
+        answer = [answer0, answer1]
+        return answer
+        
+            
+            
+
 def main():
     t = int(input())
     for _ in range(t):
-        solve()
+        solve() 
 
 if __name__ == '__main__':
     main()
