@@ -1,0 +1,1 @@
+Leia `CONTEXTO_IA.md` antes de orientar estudos ou avaliar o perfil competitivo do autor. Consulte `README.md` para a organização do acervo. Diferencie código existente, tentativa incompleta e aceite confirmado; não deduza domínio de uma técnica apenas pela pasta do arquivo.
